@@ -16,3 +16,8 @@ export type ICreateMessage = {
 	receiver_id: number,
 	message: string,
 }
+
+export type ICreateGifs = {
+	uploader_id: number,
+	gif: Uint8Array,
+}
