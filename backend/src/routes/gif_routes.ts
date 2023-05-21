@@ -1,5 +1,4 @@
 import { FastifyInstance } from "fastify";
-import { Message } from "../db/entities/Message.js";
 import { User } from "../db/entities/User.js";
 import { ICreateGifs } from "../types.js";
 import { Gifs } from "../db/entities/Gifs.js";
@@ -65,12 +64,10 @@ export function GifRoutesInit(app: FastifyInstance) {
 
 
 	// Delete a specific gif
-	app.delete<{ Body: { my_id: number, gif_id: number } }>("/gallary", async (req, reply) => {
-		const { my_id, gif_id} = req.body;
+	app.delete<{ Body: { gif_id: number } }>("/gallary", async (req, reply) => {
+		const { gif_id} = req.body;
 
 		try {
-			const me = await req.em.findOneOrFail(User, my_id, {strict: true});
-
 			const gifToDelete = await req.em.findOneOrFail(Gifs, gif_id, {strict: true});
 			await req.em.removeAndFlush(gifToDelete);
 			return reply.send();
