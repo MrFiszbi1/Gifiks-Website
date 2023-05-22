@@ -35,6 +35,20 @@ export function GifRoutesInit(app: FastifyInstance) {
 		}
 	});
 
+	//view all gifs as a fead
+	app.get("/fead", async (req, reply) => {
+		try {
+			const allUsers = await req.em.find(User, {});
+			const gifs = [];
+			for await (const user of allUsers) {
+				const usergifs = await req.em.find(Gifs, { uploader: user});
+				gifs.push(...usergifs);
+			}
+			return reply.send(gifs);
+		} catch (err) {
+			return reply.status(500).send({ message: err.message });
+		}
+	});
 
 	//view uploader gallary
 	app.search<{ Body: { uploader_id: number } }>("/gallary", async (req, reply) => {
