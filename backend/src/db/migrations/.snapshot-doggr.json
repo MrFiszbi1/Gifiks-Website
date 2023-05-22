@@ -363,6 +363,15 @@
           "nullable": false,
           "mappedType": "integer"
         },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
         "gif": {
           "name": "gif",
           "type": "bytea",
@@ -371,15 +380,6 @@
           "primary": false,
           "nullable": false,
           "mappedType": "blob"
-        },
-        "count": {
-          "name": "count",
-          "type": "int",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "integer"
         }
       },
       "name": "gifs",

@@ -2,6 +2,7 @@ import type { Dictionary, EntityManager } from "@mikro-orm/core";
 import { Seeder } from '@mikro-orm/seeder';
 import { Gifs } from "../entities/Gifs.js";
 import * as fs from "fs";
+import Path from 'path'
 
 export class GifsSeeder extends Seeder {
 	async run(em: EntityManager, context: Dictionary): Promise<void> {
@@ -15,37 +16,45 @@ export class GifsSeeder extends Seeder {
 		const GifData5 = fs.readFileSync("../backend/src/gifs/darth_vader_view.gif");
 		const GifData6 = fs.readFileSync("../backend/src/gifs/joker_plan.gif");
 
+		const name1 = Path.parse('../backend/src/gifs/loki_impressed.gif').name;
+		const name2 = Path.parse('../backend/src/gifs/darth_vader_dark_side.gif').name;
+		const name3 = Path.parse('../backend/src/gifs/darth_vader_impressed.gif').name;
+		const name4 = Path.parse('../backend/src/gifs/darth_vader_motivation.gif').name;
+		const name5 = Path.parse('../backend/src/gifs/darth_vader_view.gif').name;
+		const name6 = Path.parse('../backend/src/gifs/joker_plan.gif').name;
+
 		// https://mikro-orm.io/docs/seeding#shared-context
 
 		gifRepo.create({
 			uploader: context.user1,
 			gif: Buffer.from(GifData1),
-			count: 1,
+			name: name1,
+
 		});
 		gifRepo.create({
 			uploader: context.user2,
 			gif: Buffer.from(GifData2),
-			count: 2,
+			name: name2,
 		});
 		gifRepo.create({
 			uploader: context.user3,
 			gif: Buffer.from(GifData3),
-			count: 3,
+			name: name3,
 		});
 		gifRepo.create({
 			uploader: context.user1,
 			gif: Buffer.from(GifData4),
-			count: 4,
+			name: name4,
 		});
 		gifRepo.create({
 			uploader: context.user2,
 			gif: Buffer.from(GifData5),
-			count: 5,
+			name: name5,
 		});
 		gifRepo.create({
 			uploader: context.user3,
 			gif: Buffer.from(GifData6),
-			count: 6,
+			name: name6,
 		});
 
 	}

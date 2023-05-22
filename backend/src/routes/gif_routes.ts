@@ -10,7 +10,7 @@ export function GifRoutesInit(app: FastifyInstance) {
 	 */
 	//upload a gif
 	app.post<{ Body: ICreateGifs }>("/uploadgif", async (req, reply) => {
-		const { uploader_id, gif } = req.body;
+		const { uploader_id, name, gif } = req.body;
 
 		try {
 			// This is a pure convenience so we don't have to keep passing User to req.em.find
@@ -22,6 +22,7 @@ export function GifRoutesInit(app: FastifyInstance) {
 			// Create the new gif
 			const newGif = await req.em.create(Gifs, {
 				uploader: uploaderEntity,
+				name,
 				gif,
 			});
 			// Send our changes to the database
