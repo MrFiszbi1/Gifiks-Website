@@ -5,6 +5,7 @@ import { Match } from "./Match.js";
 
 import { Enum } from "@mikro-orm/core";
 import { Message } from "./Message.js";
+import { Gifs } from "./Gifs.js";
 
 export enum UserRole {
 	ADMIN = 'Admin',
@@ -61,4 +62,11 @@ export class User extends DoggrBaseEntity {
 		{cascade: [Cascade.PERSIST, Cascade.REMOVE], orphanRemoval: true}
 	)
 	messages_received!: Collection<Message>;
+
+	@OneToMany(
+		() => Gifs,
+		gif => gif.uploader,
+		{cascade: [Cascade.PERSIST, Cascade.REMOVE], orphanRemoval: true}
+	)
+	gallary!: Collection<Gifs>;
 }
