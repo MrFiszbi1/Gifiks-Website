@@ -14,7 +14,7 @@ export function getRandomProfile(): ProfileType {
 	return {
 		imgUri: `https://loremflickr.com/300/300/animal?lock=${idNum}`,
 		thumbUri: `https://loremflickr.com/75/75/animal?lock=${idNum}`,
-		name: `Doggr${idNum}`,
+		name: `Doggr ${idNum}`,
 		id: idNum
 	};
 }

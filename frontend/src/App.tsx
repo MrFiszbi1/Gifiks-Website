@@ -11,7 +11,7 @@ export function App() {
 			<nav>
 				<div className="menu">
 					<Link to="/">Home</Link> ||
-					<Link to="/match">Match</Link>
+					<Link to="/match"> Match</Link>
 				</div>
 			</nav>
 
