@@ -35,8 +35,8 @@ export function GifRoutesInit(app: FastifyInstance) {
 		}
 	});
 
-	//view all gifs as a fead
-	app.get("/fead", async (req, reply) => {
+	//view all gifs as a feed
+	app.get("/feed", async (req, reply) => {
 		try {
 			const allUsers = await req.em.find(User, {});
 			const gifs = [];
