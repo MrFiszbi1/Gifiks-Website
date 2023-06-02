@@ -1,8 +1,7 @@
 import { useAuth } from "@/Services/Auth.tsx";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import initialState, { getRandomProfile } from "../InitialState";
 import { Profile } from "./Profile";
-import { Title } from "./HomePage.tsx";
 
 export function Match() {
 	const [currentProfile, setCurrentProfile] = useState(initialState.currentProfile);

@@ -1,9 +1,6 @@
-import { Home } from "@/Components/HomePage.tsx";
-import { Login } from "@/Components/Login.tsx";
 import { AuthProvider } from "@/Services/Auth.tsx";
-import { Link, Route, Routes, BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "@css/App.css";
-import { Match } from "@/Components/Match.tsx";
 import { DoggrRouter } from "@/DoggrRoutes.tsx";
 
 // This is our base React Component
