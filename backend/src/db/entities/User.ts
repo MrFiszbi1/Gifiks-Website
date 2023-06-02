@@ -25,9 +25,6 @@ export class User extends DoggrBaseEntity {
 	name!: string
 
 	@Property()
-	password!: string;
-
-	@Property()
 	petType!: string;
 
 	@Enum(() => UserRole)

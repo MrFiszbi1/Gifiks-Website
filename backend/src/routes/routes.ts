@@ -22,6 +22,10 @@ async function DoggrRoutes(app: FastifyInstance, _options = {}) {
 	MatchRoutesInit(app);
 	MessageRoutesInit(app);
 	GifRoutesInit(app);
+
+	app.get("/", async (req, reply) => {
+		reply.send("Hello world");
+	})
 }
 
 export default DoggrRoutes;

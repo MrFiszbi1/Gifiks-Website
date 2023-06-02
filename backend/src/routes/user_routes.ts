@@ -2,6 +2,8 @@ import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { SOFT_DELETABLE_FILTER } from "mikro-orm-soft-delete";
 import { User, UserRole } from "../db/entities/User.js";
 import { ICreateUsersBody, IUpdateUsersBody } from "../types.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import jwt from "jsonwebtoken";
 
 export function UserRoutesInit(app: FastifyInstance) {
 	// Route that returns all users, soft deleted and not
@@ -23,12 +25,12 @@ export function UserRoutesInit(app: FastifyInstance) {
 	// Refactor note - We DO use email still for creation!  We can't know the ID yet
 	app.post<{ Body: ICreateUsersBody }>("/users", async (req, reply) => {
 		const { name, email, password, petType } = req.body;
-
+		const auth = getAuth(app.firebase);
 		try {
+			await createUserWithEmailAndPassword(auth, email, password);
 			const newUser = await req.em.create(User, {
 				name,
 				email,
-				password,
 				petType,
 				// We'll only create Admins manually!
 				role: UserRole.USER
@@ -68,15 +70,11 @@ export function UserRoutesInit(app: FastifyInstance) {
 
 	// DELETE
 	app.delete<{ Body: { my_id: number; id_to_delete: number, password: string } }>("/users", async (req, reply) => {
-		const { my_id, id_to_delete, password } = req.body;
+		const { my_id, id_to_delete } = req.body;
 
 		try {
 			// Authenticate my user's role
 			const me = await req.em.findOneOrFail(User, my_id, {strict: true});
-			// Check passwords match
-			if (me.password !== password) {
-				return reply.status(401).send();
-			}
 
 			// Make sure the requester is an Admin
 			if (me.role === UserRole.USER) {
@@ -96,4 +94,83 @@ export function UserRoutesInit(app: FastifyInstance) {
 			return reply.status(500).send(err);
 		}
 	});
+
+	app.post<{
+		Body: {
+			email: string,
+			password: string,
+		}
+	}>("/login", async (req, reply) => {
+		const { email, password } = req.body;
+
+		try {
+			const theUser = await req.em.findOneOrFail(User, {email}, { strict: true });
+			const auth = getAuth(app.firebase);
+			const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+			if (userCredential) {
+				const { user } = userCredential;
+				if (user) {
+					const userId = theUser.id;
+					const token = jwt.sign({ userId }, "your-secret-key");
+
+					reply.send({ token });
+				} else {
+					app.log.info(`Sign-in failed for user ${email}`);
+					reply.status(401).send("Invalid email or password");
+				}
+			} else {
+				app.log.info(`Sign-in failed for user ${email}: ${userCredential}`);
+				reply.status(401).send("Invalid email or password");
+			}
+		} catch (err) {
+			console.log(err);
+			reply.status(500).send(err);
+		}
+	});
+
+
+	app.post("/logout", async (req, reply) => {
+		try {
+			const auth = getAuth(app.firebase);
+			await signOut(auth);
+			reply.send("Logged out successfully");
+		} catch (err) {
+			console.log(err);
+			reply.status(500).send(err);
+		}
+	});
+	/*
+		app.post("/create-user-accounts", async (req, reply) => {
+		try {
+			const auth = getAuth(app.firebase);
+			const users = await req.em.find(User, {});
+
+			for (const user of users) {
+				const { email, password } = user;
+
+				try {
+					// Check if the user is already registered
+					await signInWithEmailAndPassword(auth, email, password);
+
+					console.log(`User ${email} is already registered. Skipping...`);
+				} catch (error) {
+					if (error.code === "auth/user-not-found") {
+						// User is not registered, create the account
+						await createUserWithEmailAndPassword(auth, email, password);
+						console.log(`User ${email} account created successfully.`);
+					} else {
+						// Other authentication error occurred
+						console.error(`Error creating account for user ${email}:`, error);
+					}
+				}
+			}
+
+			reply.send("User accounts creation completed.");
+		} catch (error) {
+			console.error("Error creating user accounts:", error);
+			reply.status(500).send("Failed to create user accounts");
+		}
+	});
+	 */
 }

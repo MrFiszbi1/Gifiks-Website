@@ -1,26 +1,32 @@
-import { Home } from "@/Components/HomePage.tsx";
-import { Link, Route, Routes, BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "@/Services/Auth.tsx";
+import { BrowserRouter } from "react-router-dom";
 import "@css/App.css";
-import { Match } from "@/Components/Match.tsx";
+import { DoggrRouter } from "@/DoggrRoutes.tsx";
 
-// This is our first React "Component"
+//export const UserContext = createContext(null);
+
+// This is our base React Component
 export function App() {
+	/*
+	const auth = getAuth(firebaseApp);
+	const [currentUser, setCurrentUser] = useState(null);
+
+	onAuthStateChanged(auth, async (user) => {
+		// don't set the user all the time, only when sign in changes
+		if (user && !currentUser) {
+			setCurrentUser(user);
+		} else if(!user && currentUser) {
+			setCurrentUser(user);
+		}
+	});*/
+
 	return (
 		<BrowserRouter>
-		<div className="App">
-			<nav>
-				<div className="menu">
-					<Link to="/">Home</Link> ||
-					<Link to="/match"> Match</Link>
+			<AuthProvider>
+				<div className="App">
+					<DoggrRouter/>
 				</div>
-			</nav>
-
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/match" element={<Match />} />
-			</Routes>
-
-		</div>
+			</AuthProvider>
 		</BrowserRouter>
 	);
 }
