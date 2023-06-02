@@ -2,7 +2,7 @@ import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { SOFT_DELETABLE_FILTER } from "mikro-orm-soft-delete";
 import { User, UserRole } from "../db/entities/User.js";
 import { ICreateUsersBody, IUpdateUsersBody } from "../types.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import jwt from "jsonwebtoken";
 
 export function UserRoutesInit(app: FastifyInstance) {
@@ -130,4 +130,47 @@ export function UserRoutesInit(app: FastifyInstance) {
 	});
 
 
+	app.post("/logout", async (req, reply) => {
+		try {
+			const auth = getAuth(app.firebase);
+			await signOut(auth);
+			reply.send("Logged out successfully");
+		} catch (err) {
+			console.log(err);
+			reply.status(500).send(err);
+		}
+	});
+	/*
+		app.post("/create-user-accounts", async (req, reply) => {
+		try {
+			const auth = getAuth(app.firebase);
+			const users = await req.em.find(User, {});
+
+			for (const user of users) {
+				const { email, password } = user;
+
+				try {
+					// Check if the user is already registered
+					await signInWithEmailAndPassword(auth, email, password);
+
+					console.log(`User ${email} is already registered. Skipping...`);
+				} catch (error) {
+					if (error.code === "auth/user-not-found") {
+						// User is not registered, create the account
+						await createUserWithEmailAndPassword(auth, email, password);
+						console.log(`User ${email} account created successfully.`);
+					} else {
+						// Other authentication error occurred
+						console.error(`Error creating account for user ${email}:`, error);
+					}
+				}
+			}
+
+			reply.send("User accounts creation completed.");
+		} catch (error) {
+			console.error("Error creating user accounts:", error);
+			reply.status(500).send("Failed to create user accounts");
+		}
+	});
+	 */
 }

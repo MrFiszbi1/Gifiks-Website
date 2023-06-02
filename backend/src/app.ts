@@ -1,6 +1,5 @@
 import Fastify from "fastify";
-import cors from '@fastify/cors'
-import { AuthPlugin } from "./plugins/auth.js";
+import cors from '@fastify/cors';
 import { FastifyBadWordsPlugin } from "./plugins/badwords.js";
 import { FastifySearchHttpMethodPlugin } from "./plugins/http_search.js";
 import { FastifyMikroOrmPlugin } from "./plugins/mikro.js";
@@ -57,7 +56,6 @@ await app.register(FastifyMikroOrmPlugin, config);
 await app.register(FastifySearchHttpMethodPlugin, {});
 await app.register(FastifyBadWordsPlugin);
 await app.register(firebasePlugin, firebaseConfig);
-await app.register(AuthPlugin);
 await app.register(DoggrRoutes, {});
 
 export default app;

@@ -8,7 +8,7 @@ export type AuthContextProps = {
 	token: string | null;
 	userId: number;
 	handleLogin: (email: string, password: string) => Promise<boolean>;
-	handleLogout: () => void;
+	handleLogout: () => Promise<boolean>;
 };
 
 const updateAxios = async (token: string) => {
@@ -60,9 +60,23 @@ export const AuthProvider = ({ children }: any) => {
 		}
 	};
 
-	const handleLogout = () => {
-		setToken(null);
-		localStorage.removeItem("token");
+	const handleLogout = async () => {
+		if (!token) {
+			console.log("User is already logged out");
+			return false;
+		}
+
+		try {
+			const res = await signOutTheUser();
+			console.log(res);
+			setToken(null);
+			localStorage.removeItem("token");
+			return true;
+		} catch (err) {
+			console.error("Failed to handle logout: ", err);
+			navigate("/login");
+			return false;
+		}
 	};
 
 	const saveToken = (thetoken) => {
@@ -106,6 +120,13 @@ export async function getLoginTokenFromServer(email, password) {
 
 	const login_result = await httpClient.post("/login", { email, password });
 	return login_result.data.token;
+}
+
+export async function signOutTheUser() {
+	console.log("In signOut The User from server ");
+
+	const logout_result = await httpClient.post("/logout");
+	return logout_result.data;
 }
 
 export function getPayloadFromToken(token: string) {

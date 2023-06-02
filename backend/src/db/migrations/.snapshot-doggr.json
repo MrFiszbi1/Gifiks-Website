@@ -63,15 +63,6 @@
           "nullable": false,
           "mappedType": "string"
         },
-        "password": {
-          "name": "password",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "string"
-        },
         "pet_type": {
           "name": "pet_type",
           "type": "varchar(255)",

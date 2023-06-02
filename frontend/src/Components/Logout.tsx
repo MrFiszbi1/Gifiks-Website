@@ -7,18 +7,25 @@ export function Logout() {
 	const navigate = useNavigate();
 
 	useEffect( () => {
-		async function processLogout() {
+		const processLogout = async () => {
 			if(auth) {
-				await auth.handleLogout();
+				const logoutSuccess = await auth.handleLogout();
 				navigate("/");
+				return logoutSuccess;
 			} else {
 				console.error("Authorization is missing somehow");
 				navigate("/");
+				return false;
 			}
-		}
+		};
 
-		processLogout().then( () => {
-			console.log("Logout completed successfully");
+		processLogout().then( (res) => {
+			if(res){
+				console.log("Logout completed successfully");
+			}
+			else{
+				console.log("Logout was not successfully");
+			}
 		});
 	});
 
