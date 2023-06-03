@@ -1,29 +1,46 @@
 import { useAuth } from "@/Services/Auth.tsx";
-import { useEffect, useState } from "react";
-import initialState, { getRandomProfile } from "../InitialState";
+import { useContext, useEffect, useState } from "react";
 import { Profile } from "./Profile";
+import { ProfileType } from "@/DoggrTypes.ts";
+import { getNextProfileFromServer } from "@/Services/HttpClient.tsx";
+import { MatchService } from "@/Services/MatchService.tsx";
+import { PassService } from "@/Services/PassService.tsx";
 
 export function Match() {
-	const [currentProfile, setCurrentProfile] = useState(initialState.currentProfile);
-	const [likeHistory, setLikeHistory] = useState(initialState.likeHistory);
+	const [currentProfile, setCurrentProfile] = useState<ProfileType>();
+
 	const auth = useAuth();
+
+	const fetchProfile = () => {
+		getNextProfileFromServer()
+			.then((response) => setCurrentProfile(response))
+			.catch( (err) => console.log("Error in fetch profile", err));
+	};
+
+	useEffect(() => {
+		fetchProfile();
+	}, []);
 
 	useEffect(() => {
 		console.log("-- Match rerenders --");
 	});
 
 	const onLikeButtonClick = () => {
-		// this keeps allocations and copies to a minimum
-		const newLikeHistory = [...likeHistory, currentProfile];
-		const newProfile = getRandomProfile();
-		setCurrentProfile(newProfile);
-		setLikeHistory(newLikeHistory);
-		console.log("Added new liked profile");
+		MatchService.send(auth.userId, currentProfile.id)
+			.then(fetchProfile)
+			.catch(err => {
+				console.error(err);
+				fetchProfile();
+			});
 	};
 
 	const onPassButtonClick = () => {
-		const newCurrentProfile = getRandomProfile();
-		setCurrentProfile(newCurrentProfile);
+		PassService.send(auth.userId, currentProfile.id)
+			.then(fetchProfile)
+			.catch(err => {
+				console.error(err);
+				fetchProfile();
+			});
 	};
 
 	const profile = (

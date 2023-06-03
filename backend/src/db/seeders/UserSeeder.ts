@@ -10,13 +10,14 @@ export class UserSeeder extends Seeder {
 			name: "Spot",
 			email: "email@email.com",
 			petType: "Dog",
-			role: UserRole.ADMIN,
+			imgUri: "dog.jpg",			role: UserRole.ADMIN,
 		});
 
 		context.user2 = em.create(User, {
 			name: "Dogbert",
 			email: "email2@email.com",
 			petType: "Dog",
+			imgUri: "dog.jpg",
 			role: UserRole.USER,
 		});
 
@@ -24,6 +25,7 @@ export class UserSeeder extends Seeder {
 			name: "Doglord",
 			email: "email3@email.com",
 			petType: "Dog",
+			imgUri: "dog.jpg",
 			role: UserRole.USER,
 		});
 
@@ -31,6 +33,7 @@ export class UserSeeder extends Seeder {
 			name: "NotaDog",
 			email: "email4@email.com",
 			petType: "Cat",
+			imgUri: "dog.jpg",
 			role: UserRole.USER,
 		});
 	}
