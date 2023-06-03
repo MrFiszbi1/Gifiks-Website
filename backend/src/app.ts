@@ -1,5 +1,6 @@
 import Fastify from "fastify";
 import cors from '@fastify/cors';
+import multipart from '@fastify/multipart';
 import { FastifyBadWordsPlugin } from "./plugins/badwords.js";
 import { FastifySearchHttpMethodPlugin } from "./plugins/http_search.js";
 import { FastifyMikroOrmPlugin } from "./plugins/mikro.js";
@@ -52,6 +53,7 @@ await app.register(cors, {
 	}
 });
 
+await app.register(multipart);
 await app.register(FastifyMikroOrmPlugin, config);
 await app.register(FastifySearchHttpMethodPlugin, {});
 await app.register(FastifyBadWordsPlugin);

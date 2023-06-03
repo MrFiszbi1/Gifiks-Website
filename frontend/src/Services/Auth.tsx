@@ -50,8 +50,7 @@ export const AuthProvider = ({ children }: any) => {
 			const thetoken = await getLoginTokenFromServer(email, password);
 			saveToken(thetoken);
 			await updateAxios(thetoken);
-			// Hooray we're logged in and our token is saved everywhere!
-			navigate(-1);
+			navigate("/");
 			return true;
 		} catch (err) {
 			console.error("Failed to handle login: ", err);

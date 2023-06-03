@@ -1,6 +1,6 @@
 import { AuthProvider } from "@/Services/Auth.tsx";
 import { BrowserRouter } from "react-router-dom";
-import "@css/App.css";
+import "@css/DoggrStyles.css";
 import { DoggrRouter } from "@/DoggrRoutes.tsx";
 
 //export const UserContext = createContext(null);
@@ -23,7 +23,7 @@ export function App() {
 	return (
 		<BrowserRouter>
 			<AuthProvider>
-				<div className="App">
+				<div className="App doggr">
 					<DoggrRouter/>
 				</div>
 			</AuthProvider>
