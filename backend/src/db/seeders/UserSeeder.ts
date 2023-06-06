@@ -10,7 +10,8 @@ export class UserSeeder extends Seeder {
 			name: "Spot",
 			email: "email@email.com",
 			petType: "Dog",
-			imgUri: "dog.jpg",			role: UserRole.ADMIN,
+			imgUri: "dog.jpg",
+			role: UserRole.ADMIN,
 		});
 
 		context.user2 = em.create(User, {

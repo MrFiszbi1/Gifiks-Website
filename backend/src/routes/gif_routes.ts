@@ -1,8 +1,11 @@
-import { FastifyInstance } from "fastify";
-import { User } from "../db/entities/User.js";
+import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import { SOFT_DELETABLE_FILTER } from "mikro-orm-soft-delete";
+import { User, UserRole } from "../db/entities/User.js";
 import { ICreateGifs } from "../types.js";
 import { Gifs } from "../db/entities/Gifs.js";
-
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import jwt from "jsonwebtoken";
+import { UploadFileToMinio } from "../plugins/minio.js";
 
 export function GifRoutesInit(app: FastifyInstance) {
 
@@ -10,20 +13,31 @@ export function GifRoutesInit(app: FastifyInstance) {
 	 */
 	//upload a gif
 	app.post<{ Body: ICreateGifs }>("/uploadgif", async (req, reply) => {
-		const { uploader_id, name, gif } = req.body;
+	try {
+			const data = await req.file();
 
-		try {
+			const body = Object.fromEntries(
+				// @ts-ignore
+				Object.keys(data.fields).map( (key) => [key, data.fields[key].value])
+			);
+			const { uploader } = body;
+			await UploadFileToMinio(data);
+
+
 			// This is a pure convenience so we don't have to keep passing User to req.em.find
 			const userRepository = req.em.getRepository(User);
 
 			//Find the user IDs, so we can link them into our new gif
-			const uploaderEntity = await userRepository.getReference(uploader_id);
+			const uploaderEntity = await userRepository.getReference(uploader);
+
+			const parts = data.filename.split('.');
+			const firstPart = parts[0];
 
 			// Create the new gif
 			const newGif = await req.em.create(Gifs, {
 				uploader: uploaderEntity,
-				name,
-				gif,
+				name: firstPart,
+				gifUri:data.filename,
 			});
 			// Send our changes to the database
 			await req.em.flush();

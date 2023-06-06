@@ -465,14 +465,14 @@
           "nullable": false,
           "mappedType": "string"
         },
-        "gif": {
-          "name": "gif",
-          "type": "bytea",
+        "gif_uri": {
+          "name": "gif_uri",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "blob"
+          "mappedType": "string"
         }
       },
       "name": "gifs",
