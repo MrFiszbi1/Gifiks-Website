@@ -65,11 +65,11 @@ export function GifRoutesInit(app: FastifyInstance) {
 	});
 
 	//view uploader gallary
-	app.search<{ Body: { uploader_id: number } }>("/gallary", async (req, reply) => {
-		const { uploader_id } = req.body;
+	app.search<{ Body: { user: number } }>("/gallery", async (req, reply) => {
+		const { user } = req.body;
 
 		try {
-			const uploaderEntity = await req.em.getReference(User, uploader_id);
+			const uploaderEntity = await req.em.getReference(User, user);
 			const gifs = await req.em.find(Gifs, { uploader: uploaderEntity });
 			return reply.send(gifs);
 		} catch (err) {
