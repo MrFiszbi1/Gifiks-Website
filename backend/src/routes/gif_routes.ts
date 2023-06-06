@@ -12,7 +12,7 @@ export function GifRoutesInit(app: FastifyInstance) {
 	/* This is the routes that control the gifs that are uploaded to the site
 	 */
 	//upload a gif
-	app.post<{ Body: ICreateGifs }>("/uploadgif", async (req, reply) => {
+	app.post<{ Body: {uploader: string}}>("/uploadgif", async (req, reply) => {
 	try {
 			const data = await req.file();
 
@@ -23,12 +23,13 @@ export function GifRoutesInit(app: FastifyInstance) {
 			const { uploader } = body;
 			await UploadFileToMinio(data);
 
+			const uploaderNum = parseInt(uploader);
 
 			// This is a pure convenience so we don't have to keep passing User to req.em.find
 			const userRepository = req.em.getRepository(User);
 
 			//Find the user IDs, so we can link them into our new gif
-			const uploaderEntity = await userRepository.getReference(uploader);
+			const uploaderEntity = await userRepository.getReference(uploaderNum);
 
 			const parts = data.filename.split('.');
 			const firstPart = parts[0];
@@ -37,7 +38,7 @@ export function GifRoutesInit(app: FastifyInstance) {
 			const newGif = await req.em.create(Gifs, {
 				uploader: uploaderEntity,
 				name: firstPart,
-				gifUri:data.filename,
+				gifUri: data.filename,
 			});
 			// Send our changes to the database
 			await req.em.flush();

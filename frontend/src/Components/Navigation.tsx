@@ -13,6 +13,7 @@ export function NavBar() {
 						<li><Link to="/">Home</Link></li>
 						<li><Link to="/match"> Match</Link></li>
 						<li><Link to="/gallery"> Gallery</Link></li>
+						<li><Link to="/upload"> Upload</Link></li>
 						{auth?.token != null ? (
 							<li><Link to="/logout">Logout</Link></li>
 						) : (

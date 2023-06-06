@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import "@css/DoggrStyles.css";
 import { Gallery } from "@/Components/Gallery.tsx";
+import { UploadGif } from "@/Components/UploadGif.tsx";
 
 export function DoggrRouter() {
 	const auth = useAuth();
@@ -28,6 +29,7 @@ export function DoggrRouter() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/logout" element={<Logout />} />
 				<Route path="/gallery" element={<ProtectedRoute><Gallery /></ProtectedRoute>} />
+				<Route path="/upload" element={<ProtectedRoute><UploadGif /></ProtectedRoute>} />
 			</Routes>
 		</div>
 	);
