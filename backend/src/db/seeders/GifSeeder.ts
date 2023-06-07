@@ -9,7 +9,7 @@ export class GifsSeeder extends Seeder {
 
 		const gifRepo = em.getRepository(Gifs);
 
-		const name1 = Path.parse('../backend/src/assets/gifs/loki_impressed.gif').name;
+		const name1 = Path.parse('../backend/src/assets/gifs/dragonball_vegeta_smart.gif').name;
 		const name2 = Path.parse('../backend/src/assets/gifs/darth_vader_dark_side.gif').name;
 		const name3 = Path.parse('../backend/src/assets/gifs/darth_vader_impressed.gif').name;
 		const name4 = Path.parse('../backend/src/assets/gifs/darth_vader_motivation.gif').name;
