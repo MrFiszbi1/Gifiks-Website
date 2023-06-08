@@ -1,5 +1,5 @@
 import { useAuth } from "@/Services/Auth.tsx";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Profile } from "./Profile";
 import { ProfileType } from "@/DoggrTypes.ts";
 import { getNextProfileFromServer } from "@/Services/HttpClient.tsx";

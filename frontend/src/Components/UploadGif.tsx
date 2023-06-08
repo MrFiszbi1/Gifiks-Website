@@ -1,9 +1,7 @@
 import "@css/DoggrStyles.css";
 import { useAuth } from "@/Services/Auth.tsx";
-import { useEffect, useState } from "react";
-import { getNextProfileFromServer, httpClient } from "@/Services/HttpClient.tsx";
-import { GalleryService } from "@/Services/GalleryService.tsx";
-import { response } from "msw";
+import { useState } from "react";
+import { httpClient } from "@/Services/HttpClient.tsx";
 
 export enum SubmissionStatus {
 	NotSubmitted,

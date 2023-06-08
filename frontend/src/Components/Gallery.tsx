@@ -1,9 +1,7 @@
 import "@css/DoggrStyles.css";
 import { useAuth } from "@/Services/Auth.tsx";
 import { useEffect, useState } from "react";
-import { getNextProfileFromServer } from "@/Services/HttpClient.tsx";
 import { GalleryService } from "@/Services/GalleryService.tsx";
-import { response } from "msw";
 
 
 export function Gallery() {
