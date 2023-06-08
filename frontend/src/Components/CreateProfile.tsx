@@ -117,13 +117,13 @@ export const CreateProfile = () => {
 			</div>
 
 			<div className="flex flex-col w-full mb-5">
-				<label htmlFor="profilepic" className="text-blue-300 mb-2">Upload a profile picture:</label>
+				<label htmlFor="profilepic" className="text-blue-300 mb-2">Upload a profile gif (Must be a gif):</label>
 				<input
 					type={"file"}
 					className={"doggrFileUpload input input-bordered"}
 					id={"profilepic"}
 					name="profilepic"
-					accept={"image/png, image/jpeg"}
+					accept={"image/gif"}
 					onChange={onFileChange}
 				/>
 			</div>

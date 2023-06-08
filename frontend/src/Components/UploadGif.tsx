@@ -49,7 +49,7 @@ export function UploadGif() {
 
 	return (
 		<div className="mx-auto">
-			<h1 className="text-4xl font-bold mb-8 text-center text-blue-600">Upload a Gif to Your Gallery</h1>
+			<h1 className="text-4xl font-bold mb-8 text-center">Upload a Gif to Your Gallery</h1>
 			{
 				submitted === SubmissionStatus.SubmitFailed &&
 				<h3 className="text-red-500">UPLOAD GIF FAILED!</h3>

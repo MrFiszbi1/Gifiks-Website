@@ -10,16 +10,16 @@ export function NavBar() {
 				<div className={"navbar-center lg:flex"}>
 
 					<ul className={"menu menu-horizontal"}>
-						<li><Link to="/">Home</Link></li>
-						<li><Link to="/match"> Match</Link></li>
-						<li><Link to="/gallery"> Gallery</Link></li>
-						<li><Link to="/upload"> Upload</Link></li>
+						<li><Link to="/" className="nav-link text-white mr-4 no-underline">Home</Link></li>
+						<li><Link to="/match" className="nav-link text-white mr-4 no-underline"> Match</Link></li>
+						<li><Link to="/gallery" className="nav-link text-white mr-4 no-underline"> Gallery</Link></li>
+						<li><Link to="/upload" className="nav-link text-white mr-4 no-underline"> Upload</Link></li>
 						{auth?.token != null ? (
-							<li><Link to="/logout">Logout</Link></li>
+							<li><Link to="/logout" className="nav-link text-white mr-4 no-underline">Logout</Link></li>
 						) : (
 							<>
-								<li><Link to="/login"> Login</Link></li>
-								<li><Link to="/create"> Create Account</Link> </li>
+								<li><Link to="/login" className="nav-link text-white mr-4 no-underline"> Login</Link></li>
+								<li><Link to="/create" className="nav-link text-white mr-4 no-underline"> Create Account</Link> </li>
 							</>
 						)}</ul>
 

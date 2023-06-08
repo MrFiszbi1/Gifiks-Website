@@ -18,7 +18,7 @@ export function Gallery() {
 			.then((res) => {
 				console.log(res);
 				setGallery(res.gallery);
-				setNames(res.names);
+				setNames(res.names.map((name) => name.replace(/_/g, " ")));
 				console.log(gallery);
 				console.log(name);
 			})
@@ -29,7 +29,7 @@ export function Gallery() {
 
 	return (
 		<div className="mx-auto">
-			<h1 className="text-4xl font-bold mb-8 text-center text-blue-600">User's Gif Gallery</h1>
+			<h1 className="text-4xl font-bold mb-8 text-center">User's Gif Gallery</h1>
 			<div className="grid grid-cols-2 gap-4 mx-auto">
 				{gallery.map((gif, index) => (
 					<div
@@ -37,9 +37,10 @@ export function Gallery() {
 						className="flex flex-col items-center bg-slate-700 rounded border border-gray-500 p-4 mx-2"
 					>
 						<img
-							className="rounded w-128 h-128"
+							className="rounded"
 							src={minioUrl + gif}
 							alt="gif from user gallery."
+							style={{ width: "400px", height: "400px" }}
 						/>
 						<h2 className="text-4xl text-blue-600">{names[index]}</h2>
 					</div>
