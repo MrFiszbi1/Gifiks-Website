@@ -15,6 +15,7 @@ export const CreateProfile = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [petType, setPetType] = useState("");
+	const [bio, setBio] = useState("");
 	const [submitted, setSubmitted] = useState(SubmissionStatus.NotSubmitted);
 	const navigate = useNavigate();
 
@@ -29,6 +30,7 @@ export const CreateProfile = () => {
 		formData.append('email', email);
 		formData.append("password", password);
 		formData.append("petType", petType);
+		formData.append("bio", bio);
 		formData.append('file', selectedFile);
 
 		// @ts-ignore
@@ -89,6 +91,20 @@ export const CreateProfile = () => {
 			</div>
 
 			<div className="flex flex-col w-full mb-5">
+				<label htmlFor="bio" className="text-blue-300 mb-2">User Bio</label>
+				<input
+					placeholder="Bio..."
+					type="text"
+					id="bio"
+					required
+					value={bio}
+					onChange={e => setBio(e.target.value)}
+					name="petType"
+					className="input input-bordered"
+				/>
+			</div>
+
+			<div className="flex flex-col w-full mb-5">
 				<label htmlFor="email" className="text-blue-300 mb-2">Email:</label>
 				<input
 					placeholder="email@email.com"
@@ -129,7 +145,7 @@ export const CreateProfile = () => {
 			</div>
 
 			{
-				name != null && password != null && selectedFile != null &&
+				name != null && password != null && selectedFile != null && bio != null && email != null && petType != null &&
 				<div>
 					<button className="btn btn-primary btn-circle" onClick={onUploadFile}>Create</button>
 				</div>

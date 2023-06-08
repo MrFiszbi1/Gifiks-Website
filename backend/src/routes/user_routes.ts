@@ -34,7 +34,7 @@ export function UserRoutesInit(app: FastifyInstance) {
 				// @ts-ignore
 				Object.keys(data.fields).map( (key) => [key, data.fields[key].value])
 			);
-			const { name, email, password, petType } = body;
+			const { name, email, password, petType, bio } = body;
 			await UploadFileToMinio(data);
 
 			await createUserWithEmailAndPassword(auth, email, password);
@@ -42,7 +42,8 @@ export function UserRoutesInit(app: FastifyInstance) {
 				name,
 				email,
 				petType,
-				imgUri: data.filename,
+				bio,
+				gifUri: data.filename,
 				// We'll only create Admins manually!
 				role: UserRole.USER
 			});

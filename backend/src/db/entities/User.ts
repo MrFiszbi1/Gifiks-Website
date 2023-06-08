@@ -28,11 +28,14 @@ export class User extends DoggrBaseEntity {
 	@Property()
 	petType!: string;
 
+	@Property()
+	bio!: string;
+
 	@Enum(() => UserRole)
 	role!: UserRole; // string en// um
 
-	@Property({fieldName: 'img_uri'})
-	imgUri!: string;
+	@Property({fieldName: 'gif_uri'})
+	gifUri!: string;
 
 	// Note that these DO NOT EXIST in the database itself!
 	@OneToMany(

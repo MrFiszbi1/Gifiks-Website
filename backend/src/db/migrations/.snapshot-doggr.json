@@ -72,6 +72,15 @@
           "nullable": false,
           "mappedType": "string"
         },
+        "bio": {
+          "name": "bio",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
         "role": {
           "name": "role",
           "type": "text",
@@ -85,8 +94,8 @@
           ],
           "mappedType": "enum"
         },
-        "img_uri": {
-          "name": "img_uri",
+        "gif_uri": {
+          "name": "gif_uri",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,

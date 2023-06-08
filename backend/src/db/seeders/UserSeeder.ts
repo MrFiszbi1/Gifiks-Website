@@ -10,7 +10,8 @@ export class UserSeeder extends Seeder {
 			name: "Darth Vader",
 			email: "email@email.com",
 			petType: "Dog",
-			imgUri: "Darth_Vader.gif",
+			bio: "I brought balance to the force",
+			gifUri: "Darth_Vader.gif",
 			role: UserRole.ADMIN,
 		});
 
@@ -18,7 +19,8 @@ export class UserSeeder extends Seeder {
 			name: "Vegeta",
 			email: "email2@email.com",
 			petType: "Dog",
-			imgUri: "Vegeta.gif",
+			bio: "I saved the universe",
+			gifUri: "Vegeta.gif",
 			role: UserRole.USER,
 		});
 
@@ -26,7 +28,8 @@ export class UserSeeder extends Seeder {
 			name: "Joker",
 			email: "email3@email.com",
 			petType: "Dog",
-			imgUri: "Joker.gif",
+			bio: "I taught people the reality of the mind",
+			gifUri: "Joker.gif",
 			role: UserRole.USER,
 		});
 
@@ -34,7 +37,8 @@ export class UserSeeder extends Seeder {
 			name: "Loki",
 			email: "email4@email.com",
 			petType: "Cat",
-			imgUri: "Loki.gif",
+			bio: "Asgard prospered under me",
+			gifUri: "Loki.gif",
 			role: UserRole.USER,
 		});
 
@@ -42,7 +46,8 @@ export class UserSeeder extends Seeder {
 			name: "Sasuke",
 			email: "email5@email.com",
 			petType: "Cat",
-			imgUri: "Sasuke.gif",
+			bio: "I am the protector of the ninja world",
+			gifUri: "Sasuke.gif",
 			role: UserRole.USER,
 		});
 
@@ -50,7 +55,8 @@ export class UserSeeder extends Seeder {
 			name: "Eric Cartman",
 			email: "email6@email.com",
 			petType: "Cat",
-			imgUri: "Eric_Cartman.gif",
+			bio: "I am just a boy bringing joy to his friends and family",
+			gifUri: "Eric_Cartman.gif",
 			role: UserRole.USER,
 		});
 	}
