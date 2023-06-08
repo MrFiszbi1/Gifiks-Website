@@ -15,6 +15,6 @@ export class Gifs  extends DoggrBaseEntity  {
 	@Property()
 	name!: string;
 
-	@Property({ type: BlobType })
-	gif!: Buffer;
+	@Property({fieldName: 'gif_uri'})
+	gifUri!: string;
 }

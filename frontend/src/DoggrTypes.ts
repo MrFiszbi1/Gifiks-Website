@@ -5,8 +5,10 @@ export type State = {
 };
 
 export type ProfileType = {
-	imgUri: string;
+	gifUri: string;
 	thumbUri: string;
 	name: string;
+	petType: string;
+	bio:string;
 	id: number;
 };
