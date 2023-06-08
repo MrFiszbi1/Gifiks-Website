@@ -6,6 +6,7 @@ import { Match } from "@/Components/Match.tsx";
 import { NavBar } from "@/Components/Navigation.tsx";
 import { ProfileProps } from "@/Components/Profile.tsx";
 import { ProtectedRoute } from "@/Components/ProtectedRoute.tsx";
+import { UserProfile } from "@/Components/UserProfile.tsx";
 import { useAuth } from "@/Services/Auth.tsx";
 import { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
@@ -30,6 +31,7 @@ export function DoggrRouter() {
 				<Route path="/logout" element={<Logout />} />
 				<Route path="/gallery" element={<ProtectedRoute><Gallery /></ProtectedRoute>} />
 				<Route path="/upload" element={<ProtectedRoute><UploadGif /></ProtectedRoute>} />
+				<Route path="/profile" element={<ProtectedRoute><UserProfile  /></ProtectedRoute>} />
 			</Routes>
 		</div>
 	);

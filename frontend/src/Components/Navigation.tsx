@@ -14,6 +14,7 @@ export function NavBar() {
 						<li><Link to="/match" className="nav-link text-white mr-4 no-underline"> Match</Link></li>
 						<li><Link to="/gallery" className="nav-link text-white mr-4 no-underline"> Gallery</Link></li>
 						<li><Link to="/upload" className="nav-link text-white mr-4 no-underline"> Upload</Link></li>
+						<li><Link to="/profile" className="nav-link text-white mr-4 no-underline"> Profile</Link></li>
 						{auth?.token != null ? (
 							<li><Link to="/logout" className="nav-link text-white mr-4 no-underline">Logout</Link></li>
 						) : (
