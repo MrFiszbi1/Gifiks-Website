@@ -11,6 +11,7 @@ export function NavBar() {
 
 					<ul className={"menu menu-horizontal"}>
 						<li><Link to="/" className="nav-link text-white mr-4 no-underline">Home</Link></li>
+						<li><Link to="/feed" className="nav-link text-white mr-4 no-underline">Feed</Link></li>
 						<li><Link to="/match" className="nav-link text-white mr-4 no-underline"> Match</Link></li>
 						<li><Link to="/gallery" className="nav-link text-white mr-4 no-underline"> Gallery</Link></li>
 						<li><Link to="/upload" className="nav-link text-white mr-4 no-underline"> Upload</Link></li>
