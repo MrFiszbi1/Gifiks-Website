@@ -11,6 +11,11 @@ export const FeedService = {
 		console.log(res.data);
 		const gallery = res.data.map((gif) => gif.gifUri);
 		const names = res.data.map((gif) => gif.name);
-		return { gallery, names };
+		const dates = res.data.map((gif) => {
+			const date = gif.created_at.split('T');
+			return date[0];
+		});
+		const uploaderName = res.data.map((gif) => gif.uploaderName);
+		return { gallery, names, dates, uploaderName };
 	}
 };

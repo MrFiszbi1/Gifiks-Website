@@ -31,12 +31,15 @@ export function GifRoutesInit(app: FastifyInstance) {
 			//Find the user IDs, so we can link them into our new gif
 			const uploaderEntity = await userRepository.getReference(uploaderNum);
 
+			const uploaderName = uploaderEntity.name;
+
 			const parts = data.filename.split('.');
 			const firstPart = parts[0];
 
 			// Create the new gif
 			const newGif = await req.em.create(Gifs, {
 				uploader: uploaderEntity,
+				uploaderName: uploaderName,
 				name: firstPart,
 				gifUri: data.filename,
 			});
