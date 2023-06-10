@@ -20,14 +20,14 @@ export function Login() {
 	}, [email, password, context, setSubmitFailed]);
 
 	return (
-		<div>
-			<div>Login</div>
+		<div className={"bg-primary flex flex-col items-center rounded-box w-2/5 mx-auto"}>
+			<div className="text-4xl mb-5">Login</div>
 			<div>
 				{submitFailed ? <p>Your password or email was incorrect! Please try again.</p> : null}
 			</div>
 
-			<div>
-				<label htmlFor={"email"}>Email Address:</label>
+			<div className="flex flex-col w-11/12 mb-5">
+				<label htmlFor={"email"} className="mb-2">Email Address:</label>
 				<input
 					type="text"
 					id="email"
@@ -35,11 +35,12 @@ export function Login() {
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					name={"email"}
+					className="input input-bordered bg-neutral"
 				/>
 			</div>
 
-			<div>
-				<label htmlFor={"password"}>Password:</label>
+			<div className="flex flex-col w-11/12 mb-5">
+				<label htmlFor={"password"} className="mb-2">Password:</label>
 				<input
 					type="text"
 					id="password"
@@ -47,11 +48,12 @@ export function Login() {
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					name={"password"}
+					className="input input-bordered bg-neutral"
 				/>
 			</div>
 
 			<div>
-				<button onClick={onSubmitLogin}>Submit</button>
+				<button className="btn btn-primary btn-circle mb-3"  onClick={onSubmitLogin}>Login</button>
 			</div>
 		</div>
 	);

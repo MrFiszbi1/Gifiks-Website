@@ -33,10 +33,10 @@ export function UserProfile() {
 	});
 
 	return (
-		<div className={"flex flex-col items-center rounded-box bg-slate-700 w-3/5 mx-auto"}>
+		<div className={"bg-primary flex flex-col items-center rounded-box w-2/5 mx-auto"}>
+			<h2 className={"text-4xl m-0 mt-2"}>User: {name}</h2>
 			<img className="rounded w-128 h-128 mt-4" src={gifUri} alt="Profile gif" />
-			<h2 className={"text-4xl text-blue-600"}>{name}</h2>
-			<div className={"text-2xl text-blue-300"}>User Bio: {bio}</div>
+			<div className={"text-2xl mb-2"}>Bio: {bio}</div>
 		</div>
 	);
 }

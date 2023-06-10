@@ -55,15 +55,15 @@ export const CreateProfile = () => {
 	};
 
 	return (
-		<div className="flex flex-col items-center bg-slate-700 w-4/5 mx-auto p-5 rounded-box">
-			<h2 className="text-4xl text-blue-600 mb-5">Create Account:</h2>
+		<div className="bg-primary flex flex-col items-center w-4/5 mx-auto p-5 rounded-box">
+			<h2 className="text-4xl mb-5">Create Account:</h2>
 			{
 				submitted === SubmissionStatus.SubmitFailed &&
 				<h3 className="text-red-500">CREATING PROFILE FAILED!</h3>
 			}
 
 			<div className="flex flex-col w-full mb-5">
-				<label htmlFor="name" className="text-blue-300 mb-2">Name</label>
+				<label htmlFor="name" className="mb-2">Name</label>
 				<input
 					placeholder="Name..."
 					type="text"
@@ -72,12 +72,12 @@ export const CreateProfile = () => {
 					value={name}
 					onChange={e => setName(e.target.value)}
 					name="name"
-					className="input input-bordered"
+					className="input input-bordered bg-neutral"
 				/>
 			</div>
 
 			<div className="flex flex-col w-full mb-5">
-				<label htmlFor="petType" className="text-blue-300 mb-2">Pet Type</label>
+				<label htmlFor="petType" className="mb-2">Pet Type</label>
 				<input
 					placeholder="Dog..."
 					type="text"
@@ -86,12 +86,12 @@ export const CreateProfile = () => {
 					value={petType}
 					onChange={e => setPetType(e.target.value)}
 					name="petType"
-					className="input input-bordered"
+					className="input input-bordered bg-neutral"
 				/>
 			</div>
 
 			<div className="flex flex-col w-full mb-5">
-				<label htmlFor="bio" className="text-blue-300 mb-2">User Bio</label>
+				<label htmlFor="bio" className="mb-2">User Bio</label>
 				<input
 					placeholder="Bio..."
 					type="text"
@@ -100,12 +100,12 @@ export const CreateProfile = () => {
 					value={bio}
 					onChange={e => setBio(e.target.value)}
 					name="petType"
-					className="input input-bordered"
+					className="input input-bordered bg-neutral"
 				/>
 			</div>
 
 			<div className="flex flex-col w-full mb-5">
-				<label htmlFor="email" className="text-blue-300 mb-2">Email:</label>
+				<label htmlFor="email" className="mb-2">Email:</label>
 				<input
 					placeholder="email@email.com"
 					type="text"
@@ -114,12 +114,12 @@ export const CreateProfile = () => {
 					value={email}
 					onChange={e => setEmail(e.target.value)}
 					name="email"
-					className="input input-bordered"
+					className="input input-bordered bg-neutral"
 				/>
 			</div>
 
 			<div className="flex flex-col w-full mb-5">
-				<label htmlFor="password" className="text-blue-300 mb-2">Password:</label>
+				<label htmlFor="password" className="mb-2">Password:</label>
 				<input
 					placeholder="hunter2"
 					type="text"
@@ -128,15 +128,15 @@ export const CreateProfile = () => {
 					value={password}
 					onChange={e => setPassword(e.target.value)}
 					name="password"
-					className="input input-bordered"
+					className="input input-bordered bg-neutral"
 				/>
 			</div>
 
 			<div className="flex flex-col w-full mb-5">
-				<label htmlFor="profilepic" className="text-blue-300 mb-2">Upload a profile gif (Must be a gif):</label>
+				<label htmlFor="profilepic" className="mb-2">Upload a profile gif (Must be a gif):</label>
 				<input
 					type={"file"}
-					className={"doggrFileUpload input input-bordered"}
+					className={"bg-neutral doggrFileUpload input input-bordered pt-2"}
 					id={"profilepic"}
 					name="profilepic"
 					accept={"image/gif"}
