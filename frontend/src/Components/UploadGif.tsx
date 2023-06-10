@@ -52,13 +52,13 @@ export function UploadGif() {
 				submitted === SubmissionStatus.SubmitFailed &&
 				<h3 className="text-red-500">UPLOAD GIF FAILED!</h3>
 			}
-			<div className="flex flex-col items-center bg-slate-700 w-4/5 mx-auto p-5 rounded-box">
+			<div className="bg-primary flex flex-col items-center w-4/5 mx-auto p-5 rounded-box">
 
 				<div className="flex flex-col w-full mb-5">
-					<label htmlFor="newGif" className="text-blue-300 mb-2">Upload a Gif:</label>
+					<label htmlFor="newGif" className="mb-2">Upload a Gif:</label>
 					<input
 						type={"file"}
-						className={"doggrFileUpload input input-bordered"}
+						className={"bg-neutral doggrFileUpload input input-bordered pt-2"}
 						id={"newGif"}
 						name="newGif"
 						accept={"image/gif"}

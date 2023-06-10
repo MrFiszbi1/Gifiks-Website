@@ -7,7 +7,6 @@ import { GalleryService } from "@/Services/GalleryService.tsx";
 export function Gallery() {
 	const auth = useAuth();
 	const minioUrl = "http://localhost:9000/doggr/";
-	const [name, setName] = useState("No name set");
 	const [gallery, setGallery] = useState([]);
 	const [names, setNames] = useState([]);
 
@@ -18,7 +17,7 @@ export function Gallery() {
 				setGallery(res.gallery);
 				setNames(res.names.map((name) => name.replace(/_/g, " ")));
 				console.log(gallery);
-				console.log(name);
+				console.log(names);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -26,13 +25,13 @@ export function Gallery() {
 	}, []);
 
 	return (
-		<div className="mx-auto">
+		<div className="mx-auto mb-3">
 			<h1 className="text-4xl font-bold mb-8 text-center">User's Gif Gallery</h1>
-			<div className="grid grid-cols-2 gap-4 mx-auto">
+			<div className="grid grid-cols-3 gap-4 mx-auto">
 				{gallery.map((gif, index) => (
 					<div
 						key={gif}
-						className="flex flex-col items-center bg-slate-700 rounded border border-gray-500 p-4 mx-2"
+						className="bg-primary  flex flex-col items-center rounded border p-4 mx-2"
 					>
 						<img
 							className="rounded"
@@ -40,7 +39,7 @@ export function Gallery() {
 							alt="gif from user gallery."
 							style={{ width: "400px", height: "400px" }}
 						/>
-						<h2 className="text-4xl text-blue-600">{names[index]}</h2>
+						<h2 className="text-4xl">{names[index]}</h2>
 					</div>
 				))}
 			</div>
