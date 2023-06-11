@@ -42,24 +42,27 @@ export const CreateProfile = () => {
 			}
 		};
 
-		httpClient.post("/users", formData, config)
-			.then( (response) => {
-				console.log("Got response from uploading file", response.status);
-				if (response.status === 200) {
-					setSubmitted(SubmissionStatus.SubmitSucceeded);
-					navigate("/login");
-				} else {
-					setSubmitted(SubmissionStatus.SubmitFailed);
-				}
-			});
+
+	httpClient.post("/users", formData, config)
+		.then((response) => {
+			console.log("Got response from uploading file", response.status);
+			if (response.status === 200) {
+				setSubmitted(SubmissionStatus.SubmitSucceeded);
+				navigate("/login");
+			} else {
+				setSubmitted(SubmissionStatus.SubmitFailed);
+			}
+		})
+		.catch(() => setSubmitted(SubmissionStatus.SubmitFailed));
+
 	};
 
 	return (
-		<div className="bg-primary flex flex-col items-center w-4/5 mx-auto p-5 rounded-box">
+		<div className="bg-primary flex flex-col items-center w-4/5 mx-auto p-5 rounded-box mb-3">
 			<h2 className="text-4xl mb-5">Create Account:</h2>
 			{
 				submitted === SubmissionStatus.SubmitFailed &&
-				<h3 className="text-red-500">CREATING PROFILE FAILED!</h3>
+				<h3 className="text-4xl text-red-500">CREATING PROFILE FAILED!</h3>
 			}
 
 			<div className="flex flex-col w-full mb-5">
@@ -122,7 +125,7 @@ export const CreateProfile = () => {
 				<label htmlFor="password" className="mb-2">Password:</label>
 				<input
 					placeholder="hunter2"
-					type="text"
+					type="password"
 					id="password"
 					required
 					value={password}
@@ -147,7 +150,7 @@ export const CreateProfile = () => {
 			{
 				name != null && password != null && selectedFile != null && bio != null && email != null && petType != null &&
 				<div>
-					<button className="btn btn-primary btn-circle" onClick={onUploadFile}>Create</button>
+					<button className="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg" onClick={onUploadFile}>Create</button>
 				</div>
 			}
 		</div>

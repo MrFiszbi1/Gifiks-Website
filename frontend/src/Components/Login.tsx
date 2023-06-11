@@ -42,7 +42,7 @@ export function Login() {
 			<div className="flex flex-col w-11/12 mb-5">
 				<label htmlFor={"password"} className="mb-2">Password:</label>
 				<input
-					type="text"
+					type="password"
 					id="password"
 					required
 					value={password}
@@ -53,7 +53,7 @@ export function Login() {
 			</div>
 
 			<div>
-				<button className="btn btn-primary btn-circle mb-3"  onClick={onSubmitLogin}>Login</button>
+				<button className="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg mb-3"  onClick={onSubmitLogin}>Login</button>
 			</div>
 		</div>
 	);

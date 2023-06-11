@@ -69,7 +69,7 @@ export function UploadGif() {
 				{
 					selectedFile != null &&
 					<div>
-						<button className="btn btn-primary btn-circle" onClick={onUploadFile}>Submit</button>
+						<button className="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg" onClick={onUploadFile}>Submit</button>
 					</div>
 				}
 			</div>
