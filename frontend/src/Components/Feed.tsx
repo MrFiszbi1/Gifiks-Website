@@ -38,17 +38,17 @@ export function Feed() {
 					>
 						<h2 className="text-2xl m-0">Uploaded by: {uploaderName[index]}</h2>
 						<img
-							className="rounded"
+							className="rounded mt-3"
 							src={minioUrl + gif}
 							alt="gif from user gallery."
-							style={{ width: "400px", height: "400px" }}
+							style={{ width: "600px", height: "400px" }}
 						/>
 						<p className="m-0"> uploaded at {dates[index]}</p>
 						<h2 className="text-4xl m-0">{names[index]}</h2>
 					</div>
 				))}
 			</div>
-			<h3 className="text-2xl font-bold mb-8 text-center">End of Feed. No older other gifs to view</h3>
+			<h3 className="text-2xl font-bold mb-8 text-center">End of Feed. No older gifs to view</h3>
 		</div>
 	);
 }

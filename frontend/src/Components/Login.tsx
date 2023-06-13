@@ -21,7 +21,7 @@ export function Login() {
 
 	return (
 		<div className={"bg-primary flex flex-col items-center rounded-box w-2/5 mx-auto"}>
-			<div className="text-4xl mb-5">Login</div>
+			<div className="text-4xl my-3">Login</div>
 			<div>
 				{submitFailed ? <p>Your password or email was incorrect! Please try again.</p> : null}
 			</div>
