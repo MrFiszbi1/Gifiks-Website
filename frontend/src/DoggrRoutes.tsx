@@ -14,6 +14,7 @@ import "@css/DoggrStyles.css";
 import { Gallery } from "@/Components/Gallery.tsx";
 import { UploadGif } from "@/Components/UploadGif.tsx";
 import { Feed } from "@/Components/Feed.tsx";
+import { AllProfiles } from "@/Components/AllProfiles.tsx";
 
 export function DoggrRouter() {
 	const auth = useAuth();
@@ -34,6 +35,7 @@ export function DoggrRouter() {
 				<Route path="/upload" element={<ProtectedRoute><UploadGif /></ProtectedRoute>} />
 				<Route path="/profile" element={<ProtectedRoute><UserProfile  /></ProtectedRoute>} />
 				<Route path="/feed" element={<ProtectedRoute><Feed /></ProtectedRoute>} />
+				<Route path="/allprofiles" element={<ProtectedRoute><AllProfiles /></ProtectedRoute>} />
 			</Routes>
 		</div>
 	);

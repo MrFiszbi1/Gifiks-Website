@@ -14,6 +14,7 @@ export function NavBar() {
 						<li><Link to="/match" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Match</Link></li>
 						<li><Link to="/gallery" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Gallery</Link></li>
 						<li><Link to="/upload" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Upload</Link></li>
+						<li><Link to="/allprofiles" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Users</Link></li>
 						<li><Link to="/profile" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Profile</Link></li>
 					</ul>
 				</div>

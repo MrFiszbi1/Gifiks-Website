@@ -29,7 +29,8 @@ export function Feed() {
 
 	return (
 		<div className="mx-auto">
-			<h1 className="text-4xl font-bold mb-8 text-center">Gif Feed Page</h1>
+			<h1 className="text-4xl font-bold mb-2 text-center">Gif Feed Page</h1>
+			<h3 className="text-2xl font-bold text-center mb-3">This is a random set of gifs uploaded by diffrent users, Enjoy!</h3>
 			<div className="grid grid-cols-1 gap-4 mx-auto w-2/5">
 				{gallery.map((gif, index) => (
 					<div
@@ -48,7 +49,7 @@ export function Feed() {
 					</div>
 				))}
 			</div>
-			<h3 className="text-2xl font-bold mb-8 text-center">End of Feed. No older gifs to view</h3>
+			<h3 className="text-2xl font-bold my-4 text-center">End of Feed. If you wish to view a different set of gifs refresh the page</h3>
 		</div>
 	);
 }

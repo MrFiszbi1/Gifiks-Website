@@ -62,7 +62,20 @@ export function GifRoutesInit(app: FastifyInstance) {
 				const usergifs = await req.em.find(Gifs, { uploader: user});
 				gifs.push(...usergifs);
 			}
-			return reply.send(gifs);
+			const gifCount = gifs.length;
+			const randomGifs = [];
+			const gifsAdded = [];
+			let i = 0;
+			while (randomGifs.length < 10 && i < gifCount) {
+				const randomOffset = Math.floor(Math.random() * gifCount);
+				const selectedGif = gifs[randomOffset];
+				if (!gifsAdded.includes(selectedGif)) {
+					randomGifs.push(selectedGif);
+					gifsAdded.push(selectedGif);
+				}
+				i++;
+			}
+			return reply.send(randomGifs);
 		} catch (err) {
 			return reply.status(500).send({ message: err.message });
 		}
