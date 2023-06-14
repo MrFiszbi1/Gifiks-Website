@@ -41,7 +41,6 @@ export function UserRoutesInit(app: FastifyInstance) {
 			const newUser = await req.em.create(User, {
 				name,
 				email,
-				petType: "N/A",
 				bio,
 				gifUri: data.filename,
 				// We'll only create Admins manually!
