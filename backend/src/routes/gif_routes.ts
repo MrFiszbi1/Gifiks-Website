@@ -14,43 +14,44 @@ export function GifRoutesInit(app: FastifyInstance) {
 	//upload a gif
 	app.post<{ Body: {uploader: string}}>("/uploadgif", async (req, reply) => {
 	try {
-			const data = await req.file();
+		const data = await req.file();
 
-			const body = Object.fromEntries(
-				// @ts-ignore
-				Object.keys(data.fields).map( (key) => [key, data.fields[key].value])
-			);
-			const { uploader } = body;
-			await UploadFileToMinio(data);
+		const body = Object.fromEntries(
+			// @ts-ignore
+			Object.keys(data.fields).map( (key) => [key, data.fields[key].value])
+		);
+		const { uploader } = body;
+		await UploadFileToMinio(data);
 
-			const uploaderNum = parseInt(uploader);
+		const uploaderNum = parseInt(uploader);
 
-			// This is a pure convenience so we don't have to keep passing User to req.em.find
-			const userRepository = req.em.getRepository(User);
+		// This is a pure convenience so we don't have to keep passing User to req.em.find
+		const userRepository = req.em.getRepository(User);
 
-			//Find the user IDs, so we can link them into our new gif
-			const uploaderEntity = await userRepository.getReference(uploaderNum);
+		//Find the user IDs, so we can link them into our new gif
+		const uploaderEntity = await userRepository.getReference(uploaderNum);
+		//const uploaderEntity = await req.em.getReference(User, uploader);
 
-			const uploaderName = uploaderEntity.name;
+		const uploaderName = uploaderEntity.name;
 
-			const parts = data.filename.split('.');
-			const firstPart = parts[0];
+		const parts = data.filename.split('.');
+		const firstPart = parts[0];
 
-			// Create the new gif
-			const newGif = await req.em.create(Gifs, {
-				uploader: uploaderEntity,
-				uploaderName: uploaderName,
-				name: firstPart,
-				gifUri: data.filename,
-			});
-			// Send our changes to the database
-			await req.em.flush();
+		// Create the new gif
+		const newGif = await req.em.create(Gifs, {
+			uploader: uploaderEntity,
+			uploaderName: uploaderName,
+			name: firstPart,
+			gifUri: data.filename,
+		});
+		// Send our changes to the database
+		await req.em.flush();
 
-			// Let the user know everything went fine
-			return reply.send(newGif);
-		} catch (err) {
-			return reply.status(500).send({ message: err.message });
-		}
+		// Let the user know everything went fine
+		return reply.send(newGif);
+	} catch (err) {
+		return reply.status(500).send({ message: err.message });
+	}
 	});
 
 	//view all gifs as a feed
