@@ -34,14 +34,13 @@ export function UserRoutesInit(app: FastifyInstance) {
 				// @ts-ignore
 				Object.keys(data.fields).map( (key) => [key, data.fields[key].value])
 			);
-			const { name, email, password, petType, bio } = body;
+			const { name, email, password, bio } = body;
 			await UploadFileToMinio(data);
 
 			await createUserWithEmailAndPassword(auth, email, password);
 			const newUser = await req.em.create(User, {
 				name,
 				email,
-				petType,
 				bio,
 				gifUri: data.filename,
 				// We'll only create Admins manually!
@@ -69,11 +68,10 @@ export function UserRoutesInit(app: FastifyInstance) {
 
 	// UPDATE
 	app.put<{ Body: IUpdateUsersBody }>("/users", async (req, reply) => {
-		const { name, id, petType } = req.body;
+		const { name, id} = req.body;
 
 		const userToChange = await req.em.findOneOrFail(User, id, {strict: true});
 		userToChange.name = name;
-		userToChange.petType = petType;
 
 		// Reminder -- this is how we persist our JS object changes to the database itself
 		await req.em.flush();
@@ -124,7 +122,8 @@ export function UserRoutesInit(app: FastifyInstance) {
 				const { user } = userCredential;
 				if (user) {
 					const userId = theUser.id;
-					const token = jwt.sign({ userId }, "your-secret-key");
+					const userName = theUser.name;
+					const token = jwt.sign({ userId, userName }, "your-secret-key");
 
 					reply.send({ token });
 				} else {

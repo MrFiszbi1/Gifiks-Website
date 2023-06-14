@@ -16,6 +16,7 @@ export const GalleryService = {
 		console.log(res.data);
 		const gallery = res.data.map((gif) => gif.gifUri);
 		const names = res.data.map((gif) => gif.name);
-		return { gallery, names };
+		const ids = res.data.map((gif) => gif.id);
+		return { gallery, names, ids };
 	}
 };

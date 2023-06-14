@@ -14,7 +14,6 @@ export const CreateProfile = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [petType, setPetType] = useState("");
 	const [bio, setBio] = useState("");
 	const [submitted, setSubmitted] = useState(SubmissionStatus.NotSubmitted);
 	const navigate = useNavigate();
@@ -29,7 +28,6 @@ export const CreateProfile = () => {
 		formData.append("name", name);
 		formData.append('email', email);
 		formData.append("password", password);
-		formData.append("petType", petType);
 		formData.append("bio", bio);
 		formData.append('file', selectedFile);
 
@@ -42,24 +40,27 @@ export const CreateProfile = () => {
 			}
 		};
 
-		httpClient.post("/users", formData, config)
-			.then( (response) => {
-				console.log("Got response from uploading file", response.status);
-				if (response.status === 200) {
-					setSubmitted(SubmissionStatus.SubmitSucceeded);
-					navigate("/login");
-				} else {
-					setSubmitted(SubmissionStatus.SubmitFailed);
-				}
-			});
+
+	httpClient.post("/users", formData, config)
+		.then((response) => {
+			console.log("Got response from uploading file", response.status);
+			if (response.status === 200) {
+				setSubmitted(SubmissionStatus.SubmitSucceeded);
+				navigate("/login");
+			} else {
+				setSubmitted(SubmissionStatus.SubmitFailed);
+			}
+		})
+		.catch(() => setSubmitted(SubmissionStatus.SubmitFailed));
+
 	};
 
 	return (
-		<div className="bg-primary flex flex-col items-center w-4/5 mx-auto p-5 rounded-box">
+		<div className="bg-primary flex flex-col items-center w-4/5 mx-auto p-5 rounded-box mb-3">
 			<h2 className="text-4xl mb-5">Create Account:</h2>
 			{
 				submitted === SubmissionStatus.SubmitFailed &&
-				<h3 className="text-red-500">CREATING PROFILE FAILED!</h3>
+				<h3 className="text-4xl text-red-500">CREATING PROFILE FAILED!</h3>
 			}
 
 			<div className="flex flex-col w-full mb-5">
@@ -72,20 +73,6 @@ export const CreateProfile = () => {
 					value={name}
 					onChange={e => setName(e.target.value)}
 					name="name"
-					className="input input-bordered bg-neutral"
-				/>
-			</div>
-
-			<div className="flex flex-col w-full mb-5">
-				<label htmlFor="petType" className="mb-2">Pet Type</label>
-				<input
-					placeholder="Dog..."
-					type="text"
-					id="petType"
-					required
-					value={petType}
-					onChange={e => setPetType(e.target.value)}
-					name="petType"
 					className="input input-bordered bg-neutral"
 				/>
 			</div>
@@ -122,7 +109,7 @@ export const CreateProfile = () => {
 				<label htmlFor="password" className="mb-2">Password:</label>
 				<input
 					placeholder="hunter2"
-					type="text"
+					type="password"
 					id="password"
 					required
 					value={password}
@@ -145,9 +132,9 @@ export const CreateProfile = () => {
 			</div>
 
 			{
-				name != null && password != null && selectedFile != null && bio != null && email != null && petType != null &&
+				name != null && password != null && selectedFile != null && bio != null && email != null &&
 				<div>
-					<button className="btn btn-primary btn-circle" onClick={onUploadFile}>Create</button>
+					<button className="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg" onClick={onUploadFile}>Create</button>
 				</div>
 			}
 		</div>

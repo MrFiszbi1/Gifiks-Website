@@ -21,7 +21,7 @@ export function Login() {
 
 	return (
 		<div className={"bg-primary flex flex-col items-center rounded-box w-2/5 mx-auto"}>
-			<div className="text-4xl mb-5">Login</div>
+			<div className="text-4xl my-3">Login</div>
 			<div>
 				{submitFailed ? <p>Your password or email was incorrect! Please try again.</p> : null}
 			</div>
@@ -42,7 +42,7 @@ export function Login() {
 			<div className="flex flex-col w-11/12 mb-5">
 				<label htmlFor={"password"} className="mb-2">Password:</label>
 				<input
-					type="text"
+					type="password"
 					id="password"
 					required
 					value={password}
@@ -53,7 +53,7 @@ export function Login() {
 			</div>
 
 			<div>
-				<button className="btn btn-primary btn-circle mb-3"  onClick={onSubmitLogin}>Login</button>
+				<button className="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg mb-3"  onClick={onSubmitLogin}>Login</button>
 			</div>
 		</div>
 	);

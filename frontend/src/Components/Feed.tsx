@@ -29,7 +29,8 @@ export function Feed() {
 
 	return (
 		<div className="mx-auto">
-			<h1 className="text-4xl font-bold mb-8 text-center">Gif Feed Page</h1>
+			<h1 className="text-4xl font-bold mb-2 text-center">Gif Feed Page</h1>
+			<h3 className="text-2xl font-bold text-center mb-3">This is a random set of gifs uploaded by diffrent users, Enjoy!</h3>
 			<div className="grid grid-cols-1 gap-4 mx-auto w-2/5">
 				{gallery.map((gif, index) => (
 					<div
@@ -38,17 +39,17 @@ export function Feed() {
 					>
 						<h2 className="text-2xl m-0">Uploaded by: {uploaderName[index]}</h2>
 						<img
-							className="rounded"
+							className="rounded mt-3"
 							src={minioUrl + gif}
 							alt="gif from user gallery."
-							style={{ width: "400px", height: "400px" }}
+							style={{ width: "600px", height: "400px" }}
 						/>
 						<p className="m-0"> uploaded at {dates[index]}</p>
 						<h2 className="text-4xl m-0">{names[index]}</h2>
 					</div>
 				))}
 			</div>
-			<h3 className="text-2xl font-bold mb-8 text-center">End of Feed. No older other gifs to view</h3>
+			<h3 className="text-2xl font-bold my-4 text-center">End of Feed. If you wish to view a different set of gifs refresh the page</h3>
 		</div>
 	);
 }

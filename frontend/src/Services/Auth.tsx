@@ -7,6 +7,7 @@ export const AuthContext = createContext<AuthContextProps | null>(null);
 export type AuthContextProps = {
 	token: string | null;
 	userId: number;
+	userName: string;
 	handleLogin: (email: string, password: string) => Promise<boolean>;
 	handleLogout: () => Promise<boolean>;
 };
@@ -42,6 +43,7 @@ export const AuthProvider = ({ children }: any) => {
 
 	const [token, setToken] = useState(initialToken);
 	const [userId, setUserId] = useState(initialUserId);
+	const [userName, setUserName] = useState(initialUserId);
 
 	const handleLogin = async (email: string, password: string) => {
 		console.log("In handleLogin with ", email, password);
@@ -82,6 +84,7 @@ export const AuthProvider = ({ children }: any) => {
 		console.log(thetoken);
 		setToken(thetoken);
 		setUserId(getUserIdFromToken(thetoken));
+		setUserName(getNameFromToken(thetoken));
 		localStorage.setItem("token", JSON.stringify(thetoken));
 	};
 
@@ -90,6 +93,7 @@ export const AuthProvider = ({ children }: any) => {
 			value={{
 				token,
 				userId,
+				userName,
 				handleLogin,
 				handleLogout,
 			}}
@@ -153,4 +157,9 @@ export function getPayloadFromToken(token: string) {
 function getUserIdFromToken(token: string) {
 	const payload = getPayloadFromToken(token);
 	return payload.userId;
+}
+
+function getNameFromToken(token: string) {
+	const payload = getPayloadFromToken(token);
+	return payload.userName;
 }

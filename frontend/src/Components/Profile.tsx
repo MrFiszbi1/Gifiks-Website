@@ -6,25 +6,23 @@ export type ProfileProps = ProfileType & {
 	gifUri: string;
 	name: string;
 	bio: string;
-	onLikeButtonClick: () => void;
-	onPassButtonClick: () => void;
 };
 
-export function Profile(props: ProfileProps) {
-	const { gifUri, name, petType, bio, onLikeButtonClick, onPassButtonClick } = props;
+export function Profile(props) {
+	const { gifUri, name, bio} = props;
 
 	const minioUrl = "http://localhost:9000/doggr/" + gifUri;
 
 	return (
-		<div className={"flex flex-col items-center rounded-box bg-slate-700 w-4/5 mx-auto"}>
-			<img className="rounded w-128 h-128 mt-4" src={minioUrl} alt="Profile gif" />
-			<h2 className={"text-4xl text-blue-600"}>{name}</h2>
-			<div className={"text-2xl text-blue-300"}>Pet Type: {petType}</div>
-			<div className={"text-2xl text-blue-300"}>User Bio: {bio}</div>
-			<div className={"space-x-8 my-1"}>
-				<button className="btn btn-circle" onClick={onPassButtonClick}>Pass</button>
-				<button className="btn btn-circle" onClick={onLikeButtonClick}>Like</button>
-			</div>
+		<div className={"bg-primary flex flex-col items-center rounded-box w-2/5 mx-auto"}>
+			<h2 className={"text-4xl m-0 my-2"}>User: {name}</h2>
+			<img
+				className="rounded mx-4"
+				src={minioUrl}
+				alt="Profile gif"
+				style={{ width: "700px", height: "350px" }}
+			/>
+			<div className={"text-2xl m-3"}>Bio: {bio}</div>
 		</div>
 	);
 }

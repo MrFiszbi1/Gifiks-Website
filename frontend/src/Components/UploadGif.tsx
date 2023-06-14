@@ -23,6 +23,7 @@ export function UploadGif() {
 		const formData = new FormData();
 
 		formData.append('uploader', auth.userId.toString());
+		formData.append('userName', auth.userName);
 		formData.append('file', selectedFile);
 
 		// @ts-ignore
@@ -48,12 +49,15 @@ export function UploadGif() {
 	return (
 		<div className="mx-auto">
 			<h1 className="text-4xl font-bold mb-8 text-center">Upload a Gif to Your Gallery</h1>
-			{
-				submitted === SubmissionStatus.SubmitFailed &&
-				<h3 className="text-red-500">UPLOAD GIF FAILED!</h3>
-			}
 			<div className="bg-primary flex flex-col items-center w-4/5 mx-auto p-5 rounded-box">
-
+				{
+					submitted === SubmissionStatus.SubmitFailed &&
+					<h3 className="text-4xl  text-red-500">UPLOAD GIF FAILED!</h3>
+				}
+				{
+					submitted === SubmissionStatus.SubmitSucceeded &&
+					<h3 className="text-4xl  text-green-500">UPLOAD GIF Succeeded! View In Gallery</h3>
+				}
 				<div className="flex flex-col w-full mb-5">
 					<label htmlFor="newGif" className="mb-2">Upload a Gif:</label>
 					<input
@@ -69,7 +73,7 @@ export function UploadGif() {
 				{
 					selectedFile != null &&
 					<div>
-						<button className="btn btn-primary btn-circle" onClick={onUploadFile}>Submit</button>
+						<button className="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg" onClick={onUploadFile}>Submit</button>
 					</div>
 				}
 			</div>
