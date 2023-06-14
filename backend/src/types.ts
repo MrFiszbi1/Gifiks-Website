@@ -11,12 +11,6 @@ export type IUpdateUsersBody = {
 	petType: string
 }
 
-export type ICreateMessage = {
-	sender_id: number,
-	receiver_id: number,
-	message: string,
-}
-
 export type ICreateGifs = {
 	uploader_id: number,
 	name: string,
