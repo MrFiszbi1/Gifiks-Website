@@ -1,5 +1,3 @@
-import { UsersList } from "@/Components/UsersList.tsx";
-
 export const Home = () => {
 	const gif = "../src/assets/gifs/Dr_Evil_Welcome.gif";
 	return (
@@ -18,7 +16,6 @@ export const Home = () => {
 				/>
 				<h2 className="text-3xl mb-2">Have fun!</h2>
 			</div>
-			<UsersList />
 
 		</div>
 	);
