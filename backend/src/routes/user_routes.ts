@@ -124,7 +124,8 @@ export function UserRoutesInit(app: FastifyInstance) {
 				const { user } = userCredential;
 				if (user) {
 					const userId = theUser.id;
-					const token = jwt.sign({ userId }, "your-secret-key");
+					const userName = theUser.name;
+					const token = jwt.sign({ userId, userName }, "your-secret-key");
 
 					reply.send({ token });
 				} else {
