@@ -1,3 +1,5 @@
+import { UsersList } from "@/Components/UsersList.tsx";
+
 export const Home = () => {
 	return (
 		<div className="mx-auto mb-3">
@@ -14,6 +16,7 @@ export const Home = () => {
 				/>
 				<h2 className="text-3xl mb-2">Have fun!</h2>
 			</div>
+			<UsersList />
 
 		</div>
 	);

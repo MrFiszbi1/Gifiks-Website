@@ -11,6 +11,7 @@ export function NavBar() {
 					<ul className="menu menu-horizontal flex items-center">
 						<li><Link to="/" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Home</Link></li>
 						<li><Link to="/feed" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Feed</Link></li>
+						<li><Link to="/match" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Match</Link></li>
 						<li><Link to="/gallery" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Gallery</Link></li>
 						<li><Link to="/upload" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Upload</Link></li>
 						<li><Link to="/allprofiles" className="nav-link text-white mr-4 no-underline hover:bg-neutral">Users</Link></li>
