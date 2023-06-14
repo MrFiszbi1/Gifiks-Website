@@ -14,7 +14,6 @@ export const CreateProfile = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [petType, setPetType] = useState("");
 	const [bio, setBio] = useState("");
 	const [submitted, setSubmitted] = useState(SubmissionStatus.NotSubmitted);
 	const navigate = useNavigate();
@@ -29,7 +28,6 @@ export const CreateProfile = () => {
 		formData.append("name", name);
 		formData.append('email', email);
 		formData.append("password", password);
-		formData.append("petType", petType);
 		formData.append("bio", bio);
 		formData.append('file', selectedFile);
 
@@ -75,20 +73,6 @@ export const CreateProfile = () => {
 					value={name}
 					onChange={e => setName(e.target.value)}
 					name="name"
-					className="input input-bordered bg-neutral"
-				/>
-			</div>
-
-			<div className="flex flex-col w-full mb-5">
-				<label htmlFor="petType" className="mb-2">Pet Type</label>
-				<input
-					placeholder="Dog..."
-					type="text"
-					id="petType"
-					required
-					value={petType}
-					onChange={e => setPetType(e.target.value)}
-					name="petType"
 					className="input input-bordered bg-neutral"
 				/>
 			</div>
@@ -148,7 +132,7 @@ export const CreateProfile = () => {
 			</div>
 
 			{
-				name != null && password != null && selectedFile != null && bio != null && email != null && petType != null &&
+				name != null && password != null && selectedFile != null && bio != null && email != null &&
 				<div>
 					<button className="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg" onClick={onUploadFile}>Create</button>
 				</div>
